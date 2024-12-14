@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3>Editar Item</h3>
+        </div>
+        <div class="card-body">
+          <form *ngIf="item" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" [(ngModel)]="item.nome" name="nome" class="form-control" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="quantidade">Quantidade:</label>
+              <input type="number" id="quantidade" [(ngModel)]="item.quantidade" name="quantidade" class="form-control" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="descricao">Descrição:</label>
+              <textarea id="descricao" [(ngModel)]="item.descricao" name="descricao" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Salvar</button>
+          </form>
+          <p *ngIf="mensagemErro" class="text-danger mt-3 text-center">{{ mensagemErro }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

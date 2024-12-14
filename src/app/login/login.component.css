@@ -1,0 +1,12 @@
+.title-container {
+  display: flex;
+  justify-content: center; /* Centraliza o texto horizontalmente */
+  align-items: center; /* Alinha o texto verticalmente no espaço */
+  margin: 0; /* Remove o deslocamento */
+}
+
+.login-title {
+  margin-top: 10px;
+  text-align: center; /* Garante que o texto esteja alinhado centralizado */
+  white-space: nowrap; /* Garante que o texto fique em uma única linha */
+}
