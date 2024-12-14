@@ -1,0 +1,30 @@
+.alterar-tema {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Tema escuro - Geral */
+body.dark-theme {
+  background-color: #121212; /* Cor de fundo escura */
+  color: #ffffff; /* Cor de texto clara */
+}
+
+/* Ajuste específico para o modal no tema escuro */
+body.dark-theme .modal-content {
+  background-color: #1e1e1e; /* Fundo do modal em tema escuro */
+  color: #ffffff; /* Cor do texto do modal em tema escuro */
+}
+
+body.dark-theme .modal-header {
+  border-bottom: 1px solid #444; /* Linha de divisão no modal em tema escuro */
+}
+
+body.dark-theme .modal-footer {
+  border-top: 1px solid #444; /* Linha de divisão no modal em tema escuro */
+}
+
+/* Botão fechar no modal - cor ajustada para tema escuro */
+body.dark-theme .btn-close {
+  filter: invert(1);
+}

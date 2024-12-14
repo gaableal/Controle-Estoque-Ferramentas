@@ -1,0 +1,24 @@
+/* Modo Claro - Padrão */
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.table {
+  background-color: #f8f9fa;
+}
+
+/* Modo Escuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .table {
+  background-color: #333333;
+}
+
+body.dark-mode .btn {
+  background-color: #444444;
+  color: #ffffff;
+}

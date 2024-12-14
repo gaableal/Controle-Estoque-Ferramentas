@@ -1,0 +1,110 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Itens em Estoque</h2>
+    <div>
+      <!-- Botão de Alterar Tema -->
+      <button class="btn btn-secondary me-2" (click)="alternarTema()">Alterar Tema</button>
+
+      <!-- Botão de Sair -->
+      <button class="btn btn-danger" (click)="sair()">Sair</button>
+    </div>
+  </div>
+
+  <!-- Campo de Pesquisa -->
+  <input
+    type="text"
+    [(ngModel)]="termoPesquisa"
+    (ngModelChange)="filtrarItens()"
+    placeholder="Pesquisar itens..."
+    class="form-control mb-3"
+  />
+
+  <div *ngIf="mensagem" class="alert alert-success text-center">
+    {{ mensagem }}
+  </div>
+
+  <!-- Tabela de Itens -->
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of itensFiltrados">
+        <td>{{ item._id }}</td>
+        <td>{{ item.nome }}</td>
+        <td>{{ item.quantidade }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" [routerLink]="['/editar-item', item._id || '']">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="excluirItem(item._id || '')">Excluir</button>
+          <button class="btn btn-info btn-sm" (click)="abrirDetalhes(item)">Ver Detalhes</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botão de Adicionar Item -->
+  <button class="btn btn-success mt-3" routerLink="/adicionar-item">Adicionar Item</button>
+
+<!-- Modal para Detalhes do Item -->
+<div
+  class="modal fade"
+  id="detalhesModal"
+  tabindex="-1"
+  aria-labelledby="detalhesModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalhesModalLabel">
+          {{ itemSelecionado ? itemSelecionado.nome : "Sem nome disponível" }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Carousel para imagens -->
+        <div *ngIf="itemSelecionado && itemSelecionado.imagens && itemSelecionado.imagens.length > 0; else semImagem">
+          <div id="carouselImagens" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div
+                *ngFor="let imagem of itemSelecionado.imagens; let i = index"
+                [class]="i === 0 ? 'carousel-item active' : 'carousel-item'"
+              >
+                <img
+                  [src]="'http://localhost:5000' + imagem"
+                  alt="Imagem do item"
+                  class="d-block w-100"
+                  style="max-height: 400px; object-fit: contain;"
+                />
+              </div>
+            </div>
+            <!-- Controles de navegação -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagens" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselImagens" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
+            </button>
+          </div>
+        </div>
+        <ng-template #semImagem>
+          <p><strong>Imagem:</strong> Não disponível</p>
+        </ng-template>
+
+        <!-- Exibição das outras informações -->
+        <p><strong>Quantidade:</strong> {{ itemSelecionado ? itemSelecionado.quantidade : "Não especificada" }}</p>
+        <p><strong>Descrição:</strong> {{ itemSelecionado && itemSelecionado.descricao ? itemSelecionado.descricao : "Sem descrição disponível" }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

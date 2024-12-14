@@ -1,0 +1,9 @@
+.title-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 215px;
+}
+
+.login-title {
+  margin-top: 10px;
+}

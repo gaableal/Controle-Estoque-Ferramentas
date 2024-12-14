@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <div class="d-flex align-items-center justify-content-center">
+            <img src="assets/logo.png" alt="Logo" width="50" class="mr-2">
+            <h2 class="mb-0">Sistema de Controle de Estoque</h2>
+          </div>
+          <div class="title-container mt-2">
+          <h3 class="login-title">Registre-se</h3>
+        </div>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" [(ngModel)]="registroData.nome" name="nome" class="form-control" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="email">Email:</label>
+              <input type="email" id="email" [(ngModel)]="registroData.email" name="email" class="form-control" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="senha">Senha:</label>
+              <input type="password" id="senha" [(ngModel)]="registroData.senha" name="senha" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Registrar</button>
+            <p *ngIf="mensagemErro" class="text-danger mt-3 text-center">{{ mensagemErro }}</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
